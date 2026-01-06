@@ -1,70 +1,196 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background-color: #548687;
-    text-align: center;
-}
-
-.container{
-    height: 70vh;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    overflow: hidden;
+    padding: 1rem;
 }
 
-.game{
-    height: 60vmin;
-    width: 60vmin;
+main {
+    width: 100%;
+    max-width: 600px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5vmin;
+    width: 100%;
 }
 
-.box{
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 420px;
+}
+
+.box {
+    aspect-ratio: 1;
+    background: #ffffff;
     border: none;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.3);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
+    border-radius: 15px;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #667eea;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#reset-btn{
-    padding: 1rem;
-    font-size:1.25rem;
-    background-color: #191913;
-    color:#fff;
-    border-radius: 1rem;
+.box:hover:not(:disabled) {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    background: #f0f0ff;
+}
+
+.box:active:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.box:disabled {
+    cursor: not-allowed;
+}
+
+#reset-btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #ffffff;
+    color: #667eea;
+    border-radius: 50px;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
 }
 
-#new-btn{
-    padding: 1rem;
-    font-size:1.25rem;
-    background-color: #191913;
-    color:#fff;
-    border-radius: 1rem;
+#reset-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #f0f0ff;
+}
+
+#reset-btn:active {
+    transform: translateY(-1px);
+}
+
+#new-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: #ffffff;
+    color: #667eea;
+    border-radius: 50px;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    margin-top: 1.5rem;
 }
 
-#msg{
-    color: #ffffc7;
-    font-size: 8vmin;
-    gap: 2rem;
+#new-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #f0f0ff;
 }
 
-.msg-container{
-    height: 30vmin;
+#new-btn:active {
+    transform: translateY(-1px);
 }
 
-.hide{
+#msg {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    animation: fadeIn 0.5s ease;
+}
+
+.msg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.hide {
     display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .game {
+        max-width: 350px;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .box {
+        font-size: 2.5rem;
+    }
+
+    #msg {
+        font-size: 1.5rem;
+    }
 }
